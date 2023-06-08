@@ -9,14 +9,24 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native-stack": "^6.9.12",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
+    "native-base": "^3.4.28",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.71.8",
+    "react-redux": "^8.1.0"
   },
   "devDependencies": {
+    "react-native-web": "~0.18.10",
     "@babel/core": "^7.20.0",
+    "@expo/webpack-config": "^18.1.0",
     "@types/react": "~18.0.14",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-preset-expo": "^9.3.2",
     "typescript": "^4.9.4"
   },
   "private": true
