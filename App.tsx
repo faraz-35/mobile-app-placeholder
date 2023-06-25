@@ -1,27 +1,29 @@
-import { StatusBar } from "expo-status-bar";
-import { NativeBaseProvider, Text, Box } from "native-base";
 import React from "react";
-import { store } from "./src/store";
 import { Provider } from "react-redux";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Test1 from "./src/screens/Test1";
-import Test2 from "./src/screens/Test2";
+import { StatusBar } from "expo-status-bar";
+import { NativeBaseProvider, Text } from "native-base";
+import { useFonts } from "expo-font";
 
-const Stack = createNativeStackNavigator();
+import { store } from "@src/store";
+import nativeBaseTheme from "@src/UI/theme";
+import TestStack from "@src/stacks/testStack";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter: require("./assets/font/inter/Inter-SemiBold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <NavigationContainer>
-      <NativeBaseProvider>
-        <Provider store={store}>
-          <Stack.Navigator>
-            <Stack.Screen name="Test1" component={Test1} />
-            <Stack.Screen name="Test2" component={Test2} />
-          </Stack.Navigator>
-          <StatusBar style="auto" />
-        </Provider>
-      </NativeBaseProvider>
-    </NavigationContainer>
+    <NativeBaseProvider theme={nativeBaseTheme}>
+      <Provider store={store}>
+        <TestStack />
+        <StatusBar style="auto" />
+        <Text style={{ fontSize: 40 }}>testing</Text>
+      </Provider>
+    </NativeBaseProvider>
   );
 }
