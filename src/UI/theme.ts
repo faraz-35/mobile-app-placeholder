@@ -2,7 +2,6 @@ import { PRIMARY_COLOR } from "@src/constants/styles";
 import { extendTheme } from "native-base";
 
 const nativeBaseTheme = extendTheme({
-  //TODO: set width and height for components
   components: {
     colors: {
       primary: {
@@ -19,7 +18,9 @@ const nativeBaseTheme = extendTheme({
       },
     },
     Input: {
-      baseStyle: {},
+      baseStyle: {
+        innerHeight: "50px",
+      },
       defaultProps: {
         variant: "filled",
         size: "md",
@@ -35,7 +36,9 @@ const nativeBaseTheme = extendTheme({
       },
     },
     Button: {
-      baseStyle: {},
+      baseStyle: {
+        innerHeight: "50px",
+      },
       defaultProps: {
         bg: PRIMARY_COLOR,
         borderRadius: "md",
