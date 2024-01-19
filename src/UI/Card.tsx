@@ -1,7 +1,8 @@
-import { Box } from "native-base";
+import { Box, IBoxProps } from "native-base";
+import React from "react";
 
 interface IProps {
-  containerStyles?: any; //TODO: Type should be some type/native-base/box
+  containerStyles?: IBoxProps;
 }
 
 const Card: React.FC<IProps> = ({ containerStyles }) => {

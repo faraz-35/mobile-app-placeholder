@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface CounterState {
   value: number;
   loading?: boolean;
+  error?: string;
   posts?: string[];
 }
 
@@ -37,15 +38,16 @@ const counterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getPosts.pending, (state: CounterState) => {
+      .addCase(getPosts.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getPosts.fulfilled, (state: CounterState, { payload }) => {
+      .addCase(getPosts.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.posts = payload;
       })
-      .addCase(getPosts.rejected, (state: CounterState) => {
+      .addCase(getPosts.rejected, (state, { error }) => {
         state.loading = false;
+        state.error = error.message;
       });
   },
 });
