@@ -14,7 +14,8 @@ const initialState: UserState = {
   data: null,
 };
 
-const userLogin = createAsyncThunk<UserState["data"], UserAuth>(
+//Auth
+const userLogin = createAsyncThunk<User, UserAuth>(
   "user/userLogin",
   async (creds) => {
     const res = await axios.post(urls.userLoginUrl, creds);
@@ -23,7 +24,7 @@ const userLogin = createAsyncThunk<UserState["data"], UserAuth>(
   }
 );
 
-const userSignup = createAsyncThunk<UserState["data"], UserAuth>(
+const userSignup = createAsyncThunk<User, UserAuth>(
   "user/userSignup",
   async (creds) => {
     const res = await axios.post(urls.userSignupUrl, creds);
@@ -32,9 +33,9 @@ const userSignup = createAsyncThunk<UserState["data"], UserAuth>(
   }
 );
 
-const handleAsyncActions = (
+const handleAsyncAuthActions = (
   builder: ActionReducerMapBuilder<UserState>,
-  asyncThunk: AsyncThunk<User | null, UserAuth, {}>
+  asyncThunk: AsyncThunk<User, UserAuth, {}>
 ) => {
   builder
     .addCase(asyncThunk.pending, (state) => {
@@ -50,17 +51,62 @@ const handleAsyncActions = (
     });
 };
 
+//Object management
+const addUserObject = createAsyncThunk<User["objects"], UserObject>(
+  "user/addUserObject",
+  async (data) => {
+    const { id, ...rest } = data;
+    const res = await axios.post(urls.addUserObjectUrl, rest, {
+      params: { id },
+    });
+    if (res.data.error) throw new Error(res.data.error);
+    return res.data.data;
+  }
+);
+
+const removeUserObject = createAsyncThunk<User["objects"], UserObject>(
+  "user/removeUserObject",
+  async (data) => {
+    const { id, ...rest } = data;
+    const res = await axios.post(urls.removeUserObjectUrl, rest, {
+      params: { id },
+    });
+    if (res.data.error) throw new Error(res.data.error);
+    return res.data.data;
+  }
+);
+
+const handleAsyncObjectActions = (
+  builder: ActionReducerMapBuilder<UserState>,
+  asyncThunk: AsyncThunk<User["objects"], UserObject, {}>
+) => {
+  builder
+    .addCase(asyncThunk.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(asyncThunk.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.data!.objects = payload;
+    })
+    .addCase(asyncThunk.rejected, (state, { error }) => {
+      state.loading = false;
+      state.error = error.message || "Unknown Error";
+    });
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    handleAsyncActions(builder, userLogin);
-    handleAsyncActions(builder, userSignup);
+    handleAsyncAuthActions(builder, userLogin);
+    handleAsyncAuthActions(builder, userSignup);
+    handleAsyncObjectActions(builder, addUserObject);
+    handleAsyncObjectActions(builder, removeUserObject);
   },
 });
 
 export const { reducer: userReducer } = userSlice;
 export const {} = userSlice.actions;
-export { userLogin, userSignup };
+export { userLogin, userSignup, addUserObject, removeUserObject };
 export default userSlice;

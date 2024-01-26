@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { store, useAppSelector } from "@src/store";
 import nativeBaseTheme from "@src/UI/theme";
 import AuthStack from "@src/stacks/Auth";
+import HomeTab from "@src/stacks/Home";
 
 function Main() {
   const user = useAppSelector((state) => state.user.data);
@@ -14,7 +15,7 @@ function Main() {
   return (
     <NativeBaseProvider theme={nativeBaseTheme}>
       <StatusBar style="auto" />
-      {user ? <></> : <AuthStack />}
+      {user ? <HomeTab /> : <AuthStack />}
     </NativeBaseProvider>
   );
 }
