@@ -1,7 +1,8 @@
 type User = {
+  id: string;
   email: string;
-  password: string;
   username: string;
+  objects: string[];
 };
 
 interface UserState {
@@ -13,4 +14,13 @@ interface UserState {
 interface UserAuth {
   email: string;
   password: string;
+}
+
+interface Id {
+  id: string;
+}
+
+interface UserObject {
+  id: string;
+  objectId: string;
 }
