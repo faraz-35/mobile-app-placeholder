@@ -8,6 +8,7 @@ import { Button, HStack } from "native-base";
 
 import Home from "@src/screens/Home";
 import Profile from "@src/screens/Profile";
+import ScreenHeader from "@src/components/globals/screenHeader";
 
 const BottomTab: React.FC<BottomTabBarProps> = ({ navigation }) => {
   const navigateHome = () => navigation.navigate("Home");
@@ -31,7 +32,10 @@ const HomeTab: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator tabBar={(props) => <BottomTab {...props} />}>
+      <Tab.Navigator
+        screenOptions={{ header: ScreenHeader }}
+        tabBar={(props) => <BottomTab {...props} />}
+      >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>

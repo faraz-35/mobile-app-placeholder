@@ -6,6 +6,7 @@ import {
 
 import Login from "@src/screens/Login";
 import Signup from "@src/screens/Signup";
+import ScreenHeader from "@src/components/globals/screenHeader";
 
 type AuthStackParamList = {
   Login: undefined;
@@ -17,7 +18,7 @@ const AuthStack: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ header: ScreenHeader }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
