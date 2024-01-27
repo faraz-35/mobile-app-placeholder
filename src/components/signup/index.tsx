@@ -3,7 +3,7 @@ import { Button, VStack, Text } from "native-base";
 
 import useForm from "@src/hooks/useForm";
 import FormInput from "@src/UI/FormInput";
-import { userSignup } from "@src/store/slices/user";
+import { userSignup } from "@src/store/slices/user/actions/auth";
 import { useAppDispatch } from "@src/store";
 import { useAuthNavigation } from "@src/stacks/Auth";
 

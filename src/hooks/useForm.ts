@@ -1,6 +1,7 @@
-import { isValidEmail } from "@src/utils";
 import { useState } from "react";
 import { GestureResponderEvent } from "react-native";
+
+import { isValidEmail } from "@src/utils";
 
 type FormErrors<T> = {
   [K in keyof T]: string | null;

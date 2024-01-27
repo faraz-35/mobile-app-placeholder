@@ -24,3 +24,9 @@ interface UserObject {
   id: string;
   objectId: string;
 }
+
+interface UserPasswordChange {
+  id: string;
+  oldPassword: string;
+  newPassword: string;
+}

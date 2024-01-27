@@ -7,4 +7,6 @@ export const urls = {
   addUserObjectUrl: `${userAPI}/user-object/addObject`,
   removeUserObjectUrl: `${userAPI}/user-object/removeObject`,
   getUserObjectsUrl: `${userAPI}/user-object`,
+  userPasswordChangeUrl: `${userAPI}/user-management/changePassword`,
+  userAccountDelete: `${userAPI}/user-management`,
 };
