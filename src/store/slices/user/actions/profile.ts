@@ -7,25 +7,27 @@ import axios from "axios";
 
 import { urls } from "@src/config/urls";
 
-const userPasswordChange = createAsyncThunk<void, UserPasswordChange>(
+const userPasswordChange = createAsyncThunk<string, UserPasswordChange>(
   "user/userPasswordChange",
   async (creds) => {
     const res = await axios.post(urls.userPasswordChangeUrl, creds);
     if (res.data.error) throw new Error(res.data.error);
+    return res.data.message;
   }
 );
 
-const userAccountDelete = createAsyncThunk<void, Id>(
+const userAccountDelete = createAsyncThunk<string, Id>(
   "user/userAccountDelete",
   async (creds) => {
     const res = await axios.post(urls.userAccountDelete, creds);
     if (res.data.error) throw new Error(res.data.error);
+    return res.data.message;
   }
 );
 
 const handleAsyncProfileActions = (
   builder: ActionReducerMapBuilder<UserState>,
-  asyncThunk: AsyncThunk<User, any, {}>
+  asyncThunk: AsyncThunk<string, any, {}>
 ) => {
   builder
     .addCase(asyncThunk.pending, (state) => {
@@ -33,6 +35,7 @@ const handleAsyncProfileActions = (
     })
     .addCase(asyncThunk.fulfilled, (state, { payload }) => {
       state.loading = false;
+      state.message = payload;
     })
     .addCase(asyncThunk.rejected, (state, { error }) => {
       state.loading = false;

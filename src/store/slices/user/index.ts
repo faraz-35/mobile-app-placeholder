@@ -10,18 +10,21 @@ import {
 const initialState: UserState = {
   loading: false,
   error: null,
-  data: {
-    username: "asdf",
-    email: "asdf",
-    id: "asdf",
-    objects: [],
-  },
+  message: null,
+  data: null,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearError(state) {
+      state.error = null;
+    },
+    clearMessage(state) {
+      state.message = null;
+    },
+  },
   extraReducers: (builder) => {
     //auth
     handleAsyncAuthActions(builder, userLogin);
@@ -33,5 +36,5 @@ const userSlice = createSlice({
 });
 
 export const { reducer: userReducer } = userSlice;
-export const {} = userSlice.actions;
+export const { clearError, clearMessage } = userSlice.actions;
 export default userSlice;
