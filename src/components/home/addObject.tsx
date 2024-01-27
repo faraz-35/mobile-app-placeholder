@@ -3,7 +3,7 @@ import { Button, VStack } from "native-base";
 import FormInput from "@src/UI/FormInput";
 import useForm from "@src/hooks/useForm";
 import { useAppDispatch, useAppSelector } from "@src/store";
-import { addUserObject } from "@src/store/slices/user";
+import { addUserObject } from "@src/store/slices/user/actions/object";
 
 const AddObject: React.FC = () => {
   const dispatch = useAppDispatch();

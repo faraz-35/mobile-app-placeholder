@@ -1,7 +1,7 @@
 import { Button, HStack, Text, VStack } from "native-base";
 
 import { useAppDispatch, useAppSelector } from "@src/store";
-import { removeUserObject } from "@src/store/slices/user";
+import { removeUserObject } from "@src/store/slices/user/actions/object";
 
 const GetObjects: React.FC = () => {
   const dispatch = useAppDispatch();
