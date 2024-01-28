@@ -13,7 +13,7 @@ const GetObjects: React.FC = () => {
 
   return (
     <VStack space={4} alignItems="center" width="100%" marginY={3}>
-      {user.objects.map((object, id) => (
+      {user.objects?.map((object, id) => (
         <HStack key={id} alignItems="center" space={2}>
           <Text>{object}</Text>
           <Button onPress={() => handleObjectRemove(object)}>remove</Button>
