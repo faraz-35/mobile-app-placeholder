@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build:web": "npx expo export -p web",
+    "deploy:netlify": "netlify deploy --dir dist --prod"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.11",
